@@ -116,11 +116,11 @@ void GameSelectionState::RenderFindDataSets()
 EngineStates GameSelectionState::RenderSelectGame()
 {
     EngineStates nextState = EngineStates::eSelectGame;
-    ImGui::SetNextWindowPos(ImVec2(20, 20), ImGuiSetCond_FirstUseEver);
-    ImGui::SetNextWindowSize(ImVec2(300, 440), ImGuiSetCond_FirstUseEver);
+    ImGui::SetNextWindowPos(ImVec2(20, 20), ImGuiCond_FirstUseEver);
+    ImGui::SetNextWindowSize(ImVec2(300, 440), ImGuiCond_FirstUseEver);
     if (ImGui::Begin("Select game", nullptr, ImGuiWindowFlags_NoSavedSettings))
     {
-        ImGui::BeginChild("game list", ImVec2(0, -ImGui::GetItemsLineHeightWithSpacing()));
+        ImGui::BeginChild("game list", ImVec2(0, -ImGui::GetFrameHeightWithSpacing()));
         for (size_t idx = 0; idx < mVisibleGameDefinitions.size(); idx++)
         {
             const GameDefinition& gd = *mVisibleGameDefinitions[idx];

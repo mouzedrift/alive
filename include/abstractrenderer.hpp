@@ -12,6 +12,7 @@
 #include <glm/gtx/compatibility.hpp>
 #include "logger.hpp"
 #include <memory>
+#include "imgui/imgui_internal.h"
 #include "imgui/imgui.h"
 
 struct ColourU8
@@ -364,6 +365,6 @@ protected:
     bool mScreenSizeChanged = false;
 
     ImDrawData mRenderDrawData;
-    ImDrawList mDrawList;
+    ImDrawList mDrawList = { nullptr };
     ImVector<ImDrawList*> mRenderDrawLists;
 };

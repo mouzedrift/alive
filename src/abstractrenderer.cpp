@@ -99,7 +99,7 @@ void AbstractRenderer::ShutDown()
     {
         fonsDeleteInternal(mFontStashContext);
     }
-    ImGui::Shutdown();
+    ImGui::DestroyContext();
 }
 
 void AbstractRenderer::BeginFrame(int w, int h)
@@ -160,7 +160,7 @@ void AbstractRenderer::EndFrame()
     mScreenSizeChanged = false;
 
     mWritePos = 0;
-    mDrawList.Clear();
+    mDrawList._ResetForNewFrame();
     mDrawCommandBuffer.clear();
     mPointersToOrderedCommands.clear();
     mRenderDrawLists.clear();

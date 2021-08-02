@@ -31,7 +31,7 @@
 	branch = NFD_PickFolder
 [submodule "3rdParty/Detours"]
 	path = 3rdParty/Detours
-	url = https://github.com/paulsapps/Detours.git
+	url = https://github.com/microsoft/Detours.git
 [submodule "3rdParty/sol2"]
 	path = 3rdParty/sol2
 	url = https://github.com/ThePhD/sol2.git

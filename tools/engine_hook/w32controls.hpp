@@ -5,6 +5,8 @@
 #include <memory>
 #include <vector>
 #include <set>
+#include <string>
+#include <WinUser.h>
 
 class BaseWindow
 {
