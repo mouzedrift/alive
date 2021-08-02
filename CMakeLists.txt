@@ -131,9 +131,9 @@ SET_PROPERTY(TARGET squirrel_static PROPERTY FOLDER "3rdparty")
 
 
 SET(imgui_src 
-    ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/imgui/stb_rect_pack.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/imgui/stb_textedit.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/imgui/stb_truetype.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/imgui/imstb_rectpack.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/imgui/imstb_textedit.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/imgui/imstb_truetype.h
     ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/imgui/imconfig.h
     ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/imgui/imgui.h
     ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/imgui/imgui.cpp
@@ -750,7 +750,7 @@ INSTALL(FILES "${CMAKE_CURRENT_SOURCE_DIR}/data/GameDefinitions/Developer mode.j
 if (MSVC)
     # Build cpp files on all cores
   
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP /Wall /wd4355 /wd4201 /wd4324 /wd4464 /wd4371 /wd4503 /wd4351 /wd4514 /wd4350 /wd4710 /wd4571 /wd4820 /wd4668 /wd4626 /wd4625 /wd4365 /wd4640 /wd4628 /wd4061 /wd4826 /wd4127 /wd4711 /wd4738 /wd4255 /wd4868 /WX")
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP /Wall /wd4355 /wd4201 /wd4324 /wd4464 /wd4371 /wd4503 /wd4351 /wd4514 /wd4350 /wd4710 /wd4571 /wd4820 /wd4668 /wd4626 /wd4625 /wd4365 /wd4640 /wd4628 /wd4061 /wd4826 /wd4127 /wd4711 /wd4738 /wd4255 /wd4868")
 
     # Warnings added in VS2013 and later
     if(MSVC_VERSION GREATER 1800)
@@ -781,10 +781,10 @@ else()
 
     if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
         # C++14 by default
-        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -fPIC -Wall -Werror -Wno-unknown-pragmas")
+        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -fPIC -Wall -Wno-unknown-pragmas")
     else()
         # Enable C++14, you may need to use -std=c++0x if using an older gcc compiler
-        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fPIC -Wall -pedantic -Werror")
+        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fPIC -Wall -pedantic")
         
         SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0") # debug, no optimisation
         SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage") # enabling coverage
