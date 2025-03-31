@@ -111,23 +111,23 @@ SET(WITH_LSR_BINDINGS 0)
 
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/soxr-0.1.2)
-#SET_PROPERTY(TARGET 1a-lsr PROPERTY FOLDER "3rdparty")
-#SET_PROPERTY(TARGET 1-delay-clear PROPERTY FOLDER "3rdparty")
-#SET_PROPERTY(TARGET 3-options-input-fn PROPERTY FOLDER "3rdparty")
-#SET_PROPERTY(TARGET deinstall PROPERTY FOLDER "3rdparty")
-SET_PROPERTY(TARGET soxr PROPERTY FOLDER "3rdparty")
-#SET_PROPERTY(TARGET soxr-lsr PROPERTY FOLDER "3rdparty")
-#SET_PROPERTY(TARGET test-vectors PROPERTY FOLDER "3rdparty")
-#SET_PROPERTY(TARGET vector-cmp PROPERTY FOLDER "3rdparty")
-#SET_PROPERTY(TARGET vector-gen PROPERTY FOLDER "3rdparty")
+#SET_PROPERTY(TARGET 1a-lsr PROPERTY FOLDER "3rdParty")
+#SET_PROPERTY(TARGET 1-delay-clear PROPERTY FOLDER "3rdParty")
+#SET_PROPERTY(TARGET 3-options-input-fn PROPERTY FOLDER "3rdParty")
+#SET_PROPERTY(TARGET deinstall PROPERTY FOLDER "3rdParty")
+SET_PROPERTY(TARGET soxr PROPERTY FOLDER "3rdParty")
+#SET_PROPERTY(TARGET soxr-lsr PROPERTY FOLDER "3rdParty")
+#SET_PROPERTY(TARGET test-vectors PROPERTY FOLDER "3rdParty")
+#SET_PROPERTY(TARGET vector-cmp PROPERTY FOLDER "3rdParty")
+#SET_PROPERTY(TARGET vector-gen PROPERTY FOLDER "3rdParty")
 
 SET(SQ_DISABLE_INSTALLER 1)
 SET(DISABLE_DYNAMIC 1)
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/squirrel)
-SET_PROPERTY(TARGET sq_static PROPERTY FOLDER "3rdparty")
-SET_PROPERTY(TARGET sqstdlib_static PROPERTY FOLDER "3rdparty")
-SET_PROPERTY(TARGET squirrel_static PROPERTY FOLDER "3rdparty")
+SET_PROPERTY(TARGET sq_static PROPERTY FOLDER "3rdParty")
+SET_PROPERTY(TARGET sqstdlib_static PROPERTY FOLDER "3rdParty")
+SET_PROPERTY(TARGET squirrel_static PROPERTY FOLDER "3rdParty")
 
 
 SET(imgui_src 
@@ -138,10 +138,12 @@ SET(imgui_src
     ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/imgui/imgui.h
     ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/imgui/imgui.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/imgui/imgui_draw.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/imgui/imgui_widgets.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/imgui/imgui_tables.cpp
 )
 
 add_library(imgui STATIC ${imgui_src})
-SET_PROPERTY(TARGET imgui PROPERTY FOLDER "3rdparty")
+SET_PROPERTY(TARGET imgui PROPERTY FOLDER "3rdParty")
 
 SET(nativefiledialog_src 
     ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/nativefiledialog/src/include/nfd.h
@@ -162,7 +164,7 @@ if(WIN32)
 endif()
 
 add_library(nativefiledialog STATIC ${nativefiledialog_src})
-SET_PROPERTY(TARGET nativefiledialog PROPERTY FOLDER "3rdparty")
+SET_PROPERTY(TARGET nativefiledialog PROPERTY FOLDER "3rdParty")
 if (LINUX)
     TARGET_LINK_LIBRARIES(nativefiledialog ${GTK3_LIBRARIES})
 endif()
@@ -171,7 +173,7 @@ SET(lodepng_src
     ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/lodepng/lodepng.cpp
 )
 add_library(lodepng STATIC ${lodepng_src})
-SET_PROPERTY(TARGET lodepng PROPERTY FOLDER "3rdparty")
+SET_PROPERTY(TARGET lodepng PROPERTY FOLDER "3rdParty")
 
 
 SET(stk_src 
@@ -182,7 +184,7 @@ SET(stk_src
 )
 
 add_library(stk STATIC ${stk_src})
-SET_PROPERTY(TARGET stk PROPERTY FOLDER "3rdparty")
+SET_PROPERTY(TARGET stk PROPERTY FOLDER "3rdParty")
 
 SET(gmock_src
     ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/googletest/googlemock/src/gmock-all.cc
@@ -190,7 +192,7 @@ SET(gmock_src
 )
 
 add_library(gmock STATIC ${gmock_src})
-SET_PROPERTY(TARGET gmock PROPERTY FOLDER "3rdparty")
+SET_PROPERTY(TARGET gmock PROPERTY FOLDER "3rdParty")
 
 SET(libdeflate_src
     ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/libdeflate/lib/deflate_decompress.c
@@ -198,13 +200,13 @@ SET(libdeflate_src
 )
 
 add_library(libdeflate STATIC ${libdeflate_src})
-SET_PROPERTY(TARGET libdeflate PROPERTY FOLDER "3rdparty")
+SET_PROPERTY(TARGET libdeflate PROPERTY FOLDER "3rdParty")
 
 SET(jsonxx_src
     ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/jsonxx/jsonxx.cc
 )
 add_library(jsonxx STATIC ${jsonxx_src})
-SET_PROPERTY(TARGET jsonxx PROPERTY FOLDER "3rdparty")
+SET_PROPERTY(TARGET jsonxx PROPERTY FOLDER "3rdParty")
 
 set(VORBIS_HEADERS
     3rdParty/vorbis/lib/envelope.h
@@ -262,10 +264,10 @@ set(VORBISENC_SOURCES
 )
 
 add_library(libvorbis STATIC ${VORBISFILE_SOURCES} ${VORBISENC_SOURCES} ${VORBIS_SOURCES} ${VORBIS_HEADERS})
-SET_PROPERTY(TARGET libvorbis PROPERTY FOLDER "3rdparty")
+SET_PROPERTY(TARGET libvorbis PROPERTY FOLDER "3rdParty")
 
 add_library(gl3w_lib STATIC ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/gl3w/src/gl3w.c)
-SET_PROPERTY(TARGET gl3w_lib PROPERTY FOLDER "3rdparty")
+SET_PROPERTY(TARGET gl3w_lib PROPERTY FOLDER "3rdParty")
 TARGET_LINK_LIBRARIES(gl3w_lib ${CMAKE_DL_LIBS} ${OPENGL_LIBRARIES})
 
 SET(oddlib_src
@@ -480,12 +482,14 @@ if (MSVC AND NOT "${CMAKE_GENERATOR}" MATCHES "(Win64)")
   
     SET(detours_src 
         3rdParty/Detours/src/detours.cpp
-        3rdParty/Detours/src/disasm.cpp)
+        3rdParty/Detours/src/disasm.cpp
+        3rdParty/Detours/src/modules.cpp
+    )
 
     set_source_files_properties(${detours_src} PROPERTIES COMPILE_FLAGS "${OLD_CMAKE_CXX_FLAGS} /wd4091 /DDETOURS_X86 /DDETOURS_32BIT")
 
     add_library(detours STATIC ${detours_src})
-    SET_PROPERTY(TARGET detours PROPERTY FOLDER "3rdparty")
+    SET_PROPERTY(TARGET detours PROPERTY FOLDER "3rdParty")
 
     add_library(ddraw SHARED
         tools/engine_hook/exports.def
